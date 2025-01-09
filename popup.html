@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Summarizer</title>
+</head>
+<body>
+  <h1>HTML Summarizer</h1>
+
+  <!-- API Key Input -->
+  <label for="apiKey">Enter your OpenAI API Key:</label><br>
+  <input type="text" id="apiKey" placeholder="sk-..." /><br>
+  <button id="saveKey">Save Key</button><br><br>
+
+  <!-- Summarization Section -->
+  <button id="summarize">Summarize Page</button>
+  <textarea id="output" placeholder="Summary will appear here..." rows="10" cols="30" readonly></textarea>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
