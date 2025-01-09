@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "HTML Summarizer",
+  "name": "TLDR",
   "version": "1.0",
   "description": "Summarize the content of any webpage using OpenAI API.",
   "permissions": [
