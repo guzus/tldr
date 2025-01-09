@@ -5,11 +5,14 @@ body {
     background-color: #f9f9f9;
     color: #333;
     width: 400px;
+    /* Adjust width */
     height: 600px;
+    /* Adjust height */
 }
 
 h1 {
-    font-size: 1.5em;
+    font-size: 2em;
+    /* Increase font size */
     margin: 1em 0;
     text-align: center;
     color: #0056b3;
@@ -23,17 +26,21 @@ label {
     display: block;
     margin-bottom: 0.5em;
     font-weight: bold;
+    font-size: 1.2em;
+    /* Larger label text */
 }
 
 input,
 textarea,
 button {
     width: 100%;
-    padding: 10px;
+    padding: 15px;
+    /* Increase padding for larger fields */
     margin-bottom: 1em;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 1em;
+    font-size: 1.2em;
+    /* Increase font size for inputs and buttons */
 }
 
 textarea {
@@ -46,12 +53,18 @@ button {
     color: white;
     border: none;
     cursor: pointer;
+    font-size: 1.2em;
+    /* Larger button text */
 }
 
 button:hover {
     background-color: #003d82;
 }
 
-#settingsSection {
+footer {
+    text-align: center;
     margin-top: 20px;
+    font-size: 1em;
+    /* Adjust footer text size */
+    color: #666;
 }

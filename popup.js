@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const settingsSection = document.getElementById("settingsSection");
   const saveKeyButton = document.getElementById("saveKey");
   const summarizeButton = document.getElementById("summarize");
+  const outputTextarea = document.getElementById("output");
 
   // Toggle settings visibility
   settingsButton.addEventListener("click", () => {
@@ -21,29 +22,48 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Summarize Page
-  summarizeButton.addEventListener("click", () => {
-    chrome.storage.local.get("openaiApiKey", (result) => {
+  // Summarize Page with feedback
+  summarizeButton.addEventListener("click", async () => {
+    chrome.storage.local.get("openaiApiKey", async (result) => {
       const apiKey = result.openaiApiKey;
+
       if (!apiKey) {
         alert("Please enter your API key first!");
         return;
       }
 
-      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        const tabId = tabs[0].id;
-        chrome.scripting.executeScript(
-          {
-            target: { tabId: tabId },
-            func: () => document.body.innerText, // Extract webpage content
-          },
-          async (results) => {
-            const pageContent = results[0].result;
-            const summary = await summarizeText(pageContent, apiKey);
-            document.getElementById("output").value = summary;
-          }
-        );
-      });
+      // Disable button and show loading text
+      summarizeButton.disabled = true;
+      summarizeButton.textContent = "Summarizing...";
+      outputTextarea.value = "Loading... Please wait.";
+
+      try {
+        // Extract webpage content
+        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+          const tabId = tabs[0].id;
+          chrome.scripting.executeScript(
+            {
+              target: { tabId: tabId },
+              func: () => document.body.innerText, // Extract webpage content
+            },
+            async (results) => {
+              const pageContent = results[0].result;
+              const summary = await summarizeText(pageContent, apiKey);
+
+              // Display the summary
+              outputTextarea.value = summary;
+
+              // Reset button state
+              summarizeButton.disabled = false;
+              summarizeButton.textContent = "Summarize Page";
+            }
+          );
+        });
+      } catch (error) {
+        outputTextarea.value = `Error: ${error.message}`;
+        summarizeButton.disabled = false;
+        summarizeButton.textContent = "Summarize Page";
+      }
     });
   });
 
@@ -57,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
           Authorization: `Bearer ${apiKey}`,
         },
         body: JSON.stringify({
-          model: "gpt-3.5-turbo",
+          model: "gpt-4o-mini",
           messages: [{ role: "user", content: `Summarize this: ${text}` }],
         }),
       });
@@ -65,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await response.json();
       return data.choices[0].message.content;
     } catch (error) {
-      return `Error: ${error.message}`;
+      throw new Error(`Failed to summarize: ${error.message}`);
     }
   }
 });
