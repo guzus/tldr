@@ -45,7 +45,7 @@ button {
 
 textarea {
     resize: none;
-    height: 150px;
+    height: 250px;
 }
 
 button {
@@ -67,4 +67,8 @@ footer {
     font-size: 1em;
     /* Adjust footer text size */
     color: #666;
+}
+
+#output {
+    border: none;
 }
