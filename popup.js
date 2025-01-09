@@ -8,7 +8,6 @@ document.getElementById("saveKey").addEventListener("click", () => {
 
 // Summarize Page
 document.getElementById("summarize").addEventListener("click", () => {
-  console.log("chrome:", chrome);
   chrome.storage.local.get("openaiApiKey", (result) => {
     const apiKey = result.openaiApiKey;
     if (!apiKey) {
@@ -43,7 +42,7 @@ async function summarizeText(text, apiKey) {
         Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        model: "gpt-3.5-turbo",
+        model: "gpt-4o-mini",
         messages: [{ role: "user", content: `Summarize this: ${text}` }],
       }),
     });
