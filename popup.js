@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         body: JSON.stringify({
           model: "gpt-4o-mini",
-          messages: [{ role: "user", content: `Summarize this: ${text}` }],
+          messages: [{ role: "user", content: `Summarize this with bullet points: ${text}` }],
         }),
       });
 
