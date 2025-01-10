@@ -1,4 +1,4 @@
-# chrome-tldr
+# tldr: Browse the web faster than ever
 
 ![Icon](assets/icon.png)
 
