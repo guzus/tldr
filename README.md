@@ -2,6 +2,10 @@
 
 ![Icon](assets/icon.png)
 
+## Features
+
+- AI-powered web page summarization
+
 ## Screenshots
 
 ![TLDR Screenshot](assets/tldr-screenshot.png)
