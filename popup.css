@@ -71,4 +71,70 @@ footer {
 
 #output {
     border: none;
+    resize: none;
+    /* Prevent resizing */
+    height: 250px;
+    /* Set a fixed height */
+    padding: 10px;
+    /* Add padding for better text spacing */
+    font-size: 1.2em;
+    /* Increase font size for better readability */
+    background-color: #fff;
+    /* Set a white background for contrast */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* Add a subtle shadow */
+}
+
+#languageSelection {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+#languageSelection select {
+    width: 100%;
+    padding: 10px;
+    font-size: 1.2em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+#languageSelection select:hover {
+    background-color: #f0f0f0;
+}
+
+#settingsSection {
+    margin-bottom: 1em;
+    /* Add margin below the entire section */
+    padding: 10px;
+    /* Add padding for better spacing */
+    border: 1px solid #ccc;
+    /* Add a border */
+    border-radius: 5px;
+    /* Round the corners */
+    background-color: #f0f0f0;
+    /* Light background color */
+}
+
+#settingsSection label,
+#settingsSection input,
+#settingsSection button {
+    margin-bottom: 0.5em;
+    /* Consistent spacing between elements */
+}
+
+#settingsSection input {
+    width: calc(100% - 30px);
+    /* Adjust width to fit within padding */
+    margin-bottom: 1em;
+    /* Space below input */
+}
+
+#settingsSection button {
+    width: auto;
+    /* Allow button to size naturally */
+    padding: 10px 20px;
+    /* Adjust padding for better button size */
 }

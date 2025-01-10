@@ -4,6 +4,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const saveKeyButton = document.getElementById("saveKey");
   const summarizeButton = document.getElementById("summarize");
   const outputTextarea = document.getElementById("output");
+  const languageSelect = document.getElementById("language");
+
+  // Load saved API key and language on popup open
+  chrome.storage.local.get(["openaiApiKey", "selectedLanguage"], (result) => {
+    if (result.openaiApiKey) {
+      document.getElementById("apiKey").value = result.openaiApiKey.substring(0, 10) + "...";
+    }
+    if (result.selectedLanguage) {
+      languageSelect.value = result.selectedLanguage;
+    }
+  });
+
+  languageSelect.addEventListener("change", () => {
+    const selectedLanguage = languageSelect.value;
+    chrome.storage.local.set({ selectedLanguage: selectedLanguage }, () => {
+      // Optionally, you can show a confirmation message
+      console.log("Selected language saved:", selectedLanguage);
+    });
+  });
 
   // Toggle settings visibility
   settingsButton.addEventListener("click", () => {
@@ -17,6 +36,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // Save API Key
   saveKeyButton.addEventListener("click", () => {
     const apiKey = document.getElementById("apiKey").value;
+    if (!apiKey || apiKey.endsWith("...")) {
+      alert("Please enter proper OpenAI API key!");
+      return;
+    }
     chrome.storage.local.set({ openaiApiKey: apiKey }, () => {
       alert("API key saved successfully!");
     });
@@ -31,6 +54,9 @@ document.addEventListener("DOMContentLoaded", () => {
         alert("Please enter your API key first!");
         return;
       }
+
+      // Get the selected language
+      const selectedLanguage = languageSelect.value;
 
       // Disable button and show loading text
       summarizeButton.disabled = true;
@@ -48,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
             },
             async (results) => {
               const pageContent = results[0].result;
-              const summary = await summarizeText(pageContent, apiKey);
+              const summary = await summarizeText(pageContent, apiKey, selectedLanguage);
 
               // Display the summary
               outputTextarea.value = summary;
@@ -68,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Function to summarize text
-  async function summarizeText(text, apiKey) {
+  async function summarizeText(text, apiKey, language) {
     try {
       const response = await fetch("https://api.openai.com/v1/chat/completions", {
         method: "POST",
@@ -78,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         body: JSON.stringify({
           model: "gpt-4o-mini",
-          messages: [{ role: "user", content: `Summarize this with bullet points: ${text}` }],
+          messages: [{ role: "user", content: `Summarize this in ${language} with bullet points: ${text}` }],
         }),
       });
 

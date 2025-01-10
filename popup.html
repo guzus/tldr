@@ -3,6 +3,7 @@
 <head>
   <title>TLDR</title>
   <link rel="stylesheet" href="popup.css">
+  <meta charset='UTF-8' />
 </head>
 <body>
   <div id="container">
@@ -10,14 +11,31 @@
 
     <!-- Buttons -->
     <button id="settings">Settings</button>
-    <button id="summarize">Summarize Page</button>
 
     <!-- API Key Section (Hidden by Default) -->
     <div id="settingsSection" style="display: none;">
       <label for="apiKey">Enter OpenAI API Key:</label>
       <input type="text" id="apiKey" placeholder="sk-..." />
       <button id="saveKey">Save Key</button>
+
+      <div id="languageSelection">
+        <label for="language">Select Language:</label>
+        <select id="language">
+          <option value="English">🇬🇧 English</option>
+          <option value="Spanish">🇪🇸 Spanish</option>
+          <option value="French">🇫🇷 French</option>
+          <option value="German">🇩🇪 German</option>
+          <option value="Chinese">🇨🇳 Chinese</option>
+          <option value="Japanese">🇯🇵 Japanese</option>
+          <option value="Korean">🇰🇷 Korean</option>
+          <option value="Italian">🇮🇹 Italian</option>
+          <option value="Portuguese">🇵🇹 Portuguese</option>
+          <option value="Russian">🇷🇺 Russian</option>
+        </select>
+      </div>
     </div>
+
+    <button id="summarize">Summarize Page</button>
 
     <!-- Summary Output -->
     <label for="output">Summary:</label>
