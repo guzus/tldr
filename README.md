@@ -2,6 +2,10 @@
 
 ![Icon](assets/icon.png)
 
+## Why TLDR?
+
+**TLDR** turbocharges your web browsing experience
+
 ## Features
 
 - AI-powered web page summarization
