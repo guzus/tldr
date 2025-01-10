@@ -1,3 +1,3 @@
 # chrome-tldr
 
-![TLDR Screenshot](tldr-screenshot.png)
+![TLDR Screenshot](assets/tldr-screenshot.png)
