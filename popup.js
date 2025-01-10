@@ -78,6 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
               // Display the summary
               outputTextarea.value = summary;
+              autoResizeTextarea(outputTextarea);
 
               // Reset button state
               summarizeButton.disabled = false;
@@ -113,5 +114,10 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch (error) {
       throw new Error(`Failed to summarize: ${error.message}`);
     }
+  }
+
+  function autoResizeTextarea(textarea) {
+    textarea.style.height = 'auto'; // Reset height to auto to calculate new height
+    textarea.style.height = `${textarea.scrollHeight}px`; // Set height to scrollHeight
   }
 });

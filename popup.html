@@ -9,10 +9,14 @@
   <div id="container">
     <h1>TLDR</h1>
 
-    <!-- Buttons -->
-    <button id="settings">Settings</button>
+    <button id="summarize">Summarize Page</button>
 
-    <!-- API Key Section (Hidden by Default) -->
+    <!-- Summary Output -->
+    <textarea id="output" placeholder="Summary will appear here..." readonly></textarea>
+    
+    <!-- Buttons -->
+    <button id="settings">👷 Settings</button>
+
     <div id="settingsSection" style="display: none;">
       <label for="apiKey">Enter OpenAI API Key:</label>
       <input type="text" id="apiKey" placeholder="sk-..." />
@@ -34,13 +38,8 @@
         </select>
       </div>
     </div>
-
-    <button id="summarize">Summarize Page</button>
-
-    <!-- Summary Output -->
-    <label for="output">Summary:</label>
-    <textarea id="output" placeholder="Summary will appear here..." readonly></textarea>
   </div>
+
 
   <script src="popup.js"></script>
 </body>
