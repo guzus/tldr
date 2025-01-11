@@ -47,6 +47,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Summarize Page with feedback
   summarizeButton.addEventListener("click", async () => {
+    summarizeButton.disabled = true;
+    outputTextarea.value = "Please wait...";
+    
+    summarizeButton.classList.add('animating');
+    
     chrome.storage.local.get("openaiApiKey", async (result) => {
       const apiKey = result.openaiApiKey;
 
@@ -57,11 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Get the selected language
       const selectedLanguage = languageSelect.value;
-
-      // Disable button and show loading text
-      summarizeButton.disabled = true;
-      summarizeButton.textContent = "Summarizing...";
-      outputTextarea.value = "Loading... Please wait.";
 
       try {
         // Extract webpage content
