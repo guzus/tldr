@@ -11,6 +11,8 @@
 
     <button id="summarize"><span>Summarize Page</span></button>
 
+    <button id="readAloud"><span>Read Aloud</span></button>
+    
     <!-- Summary Output -->
     <textarea id="output" placeholder="Summary will appear here..." readonly></textarea>
     
@@ -20,6 +22,10 @@
     <div id="settingsSection" style="display: none;">
       <label for="apiKey">Enter OpenAI API Key:</label>
       <input type="text" id="apiKey" placeholder="sk-..." />
+
+      <label for="elevenLabsApiKey">Enter ElevenLabs API Key:</label>
+      <input type="text" id="elevenLabsApiKey" placeholder="sk_..." />
+
       <button id="saveKey">Save Key</button>
 
       <div id="languageSelection">
@@ -39,7 +45,6 @@
       </div>
     </div>
   </div>
-
 
   <script src="popup.js"></script>
 </body>
