@@ -7,7 +7,7 @@ export async function summarizeText(apiKey: string, text: string, language: stri
         'Authorization': `Bearer ${apiKey}`
       },
       body: JSON.stringify({
-        model: 'gpt-4-mini',
+        model: 'gpt-4o-mini',
         messages: [{ role: 'user', content: `Summarize this in ${language}: ${text}` }]
       })
     })

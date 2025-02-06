@@ -41,6 +41,7 @@ function App() {
         
         try {
           const summaryText = await summarizeText(apiKey, results[0].result, language)
+          console.log("summaryText:", summaryText)
           setSummary(summaryText)
           chrome.storage.local.set({ summary: summaryText })
         } catch (error) {
@@ -64,6 +65,7 @@ function App() {
         value={summary}
         readOnly
         placeholder="Summary will appear here..."
+        style={{ color: '#000' }}
       />
 
       <button onClick={() => setShowSettings(!showSettings)}>
