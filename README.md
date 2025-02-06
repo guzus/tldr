@@ -2,6 +2,8 @@
 
 ![Icon](assets/icon.png)
 
+Get the Chrome extension at [Chrome Web Store](https://chromewebstore.google.com/detail/tldr/aljfihkaeagceadlaimgmihkcngifngh)!
+
 ## Why TLDR?
 
 **TLDR** turbocharges your web browsing experience
