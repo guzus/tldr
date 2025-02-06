@@ -55,9 +55,13 @@ function App() {
 
   return (
     <div className="container">
-      <h1>TLDR</h1>
+      <h1 style={{ fontSize: '24px', margin: '12px 0' }}>TLDR</h1>
 
-      <button onClick={handleSummarize} disabled={isLoading}>
+      <button 
+        onClick={handleSummarize} 
+        disabled={isLoading}
+        style={{ padding: '10px 20px', fontSize: '16px', margin: '8px 0' }}
+      >
         <span>{isLoading ? 'Summarizing...' : 'Summarize Page'}</span>
       </button>
 
@@ -65,10 +69,18 @@ function App() {
         value={summary}
         readOnly
         placeholder="Summary will appear here..."
-        style={{ color: '#000' }}
+        style={{ 
+          color: '#000',
+          width: '100%',
+          boxSizing: 'border-box',
+          padding: '8px'
+        }}
       />
 
-      <button onClick={() => setShowSettings(!showSettings)}>
+      <button 
+        onClick={() => setShowSettings(!showSettings)}
+        style={{ padding: '10px 20px', fontSize: '16px', margin: '8px 0' }}
+      >
         👷 Settings
       </button>
 
