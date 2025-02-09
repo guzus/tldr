@@ -26,6 +26,7 @@ interface SettingsProps {
             value={apiKey}
             onChange={(e) => setApiKey(e.target.value)}
             placeholder="sk-..."
+            style={{ width: '100%', maxWidth: '300px', boxSizing: 'border-box' }}
           />
         </label>
   
@@ -36,6 +37,7 @@ interface SettingsProps {
             value={elevenLabsKey}
             onChange={(e) => setElevenLabsKey(e.target.value)}
             placeholder="sk_..."
+            style={{ width: '100%', maxWidth: '300px', boxSizing: 'border-box' }}
           />
         </label>
   
@@ -55,7 +57,9 @@ interface SettingsProps {
           </select>
         </label>
   
-        <button onClick={saveSettings}>Save Settings</button>
+        <button onClick={saveSettings} style={{ backgroundColor: 'black', color: 'white' }}>
+          Save Settings
+        </button>
       </div>
     )
   }
