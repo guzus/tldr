@@ -16,7 +16,7 @@ function App() {
     setSummary,
     saveSettings,
   } = useSettings()
-  
+
   const [showSettings, setShowSettings] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
@@ -33,23 +33,30 @@ function App() {
       const tabId = tabs[0].id
       if (!tabId) return
 
-      chrome.scripting.executeScript({
-        target: { tabId },
-        func: () => document.body.innerText
-      }, async (results) => {
-        if (!results?.[0]?.result) return
-        
-        try {
-          const summaryText = await summarizeText(apiKey, results[0].result, language)
-          console.log("summaryText:", summaryText)
-          setSummary(summaryText)
-          chrome.storage.local.set({ summary: summaryText })
-        } catch (error) {
-          setSummary(`Error: ${error}`)
-        } finally {
-          setIsLoading(false)
+      chrome.scripting.executeScript(
+        {
+          target: { tabId },
+          func: () => document.body.innerText,
+        },
+        async (results) => {
+          if (!results?.[0]?.result) return
+
+          try {
+            const summaryText = await summarizeText(
+              apiKey,
+              results[0].result,
+              language
+            )
+            console.log('summaryText:', summaryText)
+            setSummary(summaryText)
+            chrome.storage.local.set({ summary: summaryText })
+          } catch (error) {
+            setSummary(`Error: ${error}`)
+          } finally {
+            setIsLoading(false)
+          }
         }
-      })
+      )
     })
   }
 
@@ -57,10 +64,16 @@ function App() {
     <div className="container">
       <h1 style={{ fontSize: '24px', margin: '12px 0' }}>TLDR</h1>
 
-      <button 
-        onClick={handleSummarize} 
+      <button
+        onClick={handleSummarize}
         disabled={isLoading}
-        style={{ padding: '10px 20px', fontSize: '16px', margin: '8px 0' }}
+        style={{
+          padding: '10px 20px',
+          fontSize: '16px',
+          margin: '8px 0',
+          backgroundColor: 'black',
+          color: 'white',
+        }}
       >
         <span>{isLoading ? 'Summarizing...' : 'Summarize Page'}</span>
       </button>
@@ -69,17 +82,23 @@ function App() {
         value={summary}
         readOnly
         placeholder="Summary will appear here..."
-        style={{ 
+        style={{
           color: '#000',
           width: '100%',
           boxSizing: 'border-box',
-          padding: '8px'
+          padding: '8px',
         }}
       />
 
-      <button 
+      <button
         onClick={() => setShowSettings(!showSettings)}
-        style={{ padding: '10px 20px', fontSize: '16px', margin: '8px 0' }}
+        style={{
+          padding: '10px 20px',
+          fontSize: '16px',
+          margin: '8px 0',
+          backgroundColor: 'black',
+          color: 'white',
+        }}
       >
         👷 Settings
       </button>
