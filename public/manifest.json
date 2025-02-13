@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "TLDR",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Summarize the content of any webpage using OpenAI API.",
   "action": {
     "default_popup": "index.html",
